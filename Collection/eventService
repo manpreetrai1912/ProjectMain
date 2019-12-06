@@ -1,0 +1,10 @@
+ db.eventService.find()
+{ "_id" : ObjectId("5d8eb39a5710ff3ad231104c"), "eid" : 101, "companyName" : "simran caterers", "expenses" : 200 }
+{ "_id" : ObjectId("5d8eb3db5710ff3ad231104d"), "eid" : 101, "companyName" : "jason decoraters", "expenses" : 300 }
+{ "_id" : ObjectId("5d8eb4055710ff3ad231104e"), "eid" : 103, "companyName" : "simran caterers", "expenses" : 300 }
+{ "_id" : ObjectId("5d8eb4525710ff3ad2311051"), "eid" : 102, "companyName" : "john entertainment", "expenses" : 370 }
+{ "_id" : ObjectId("5d8eb4665710ff3ad2311052"), "eid" : 104, "companyName" : "john entertainment", "expenses" : 370 }
+{ "_id" : ObjectId("5d8eb4705710ff3ad2311053"), "eid" : 106, "companyName" : "john entertainment", "expenses" : 370 }
+{ "_id" : ObjectId("5d8ebee65710ff3ad2311054"), "eid" : 104, "companyName" : "john entertainment", "expenses" : 370 }
+{ "_id" : ObjectId("5d8eb4205710ff3ad231104f"), "eid" : 105, "companyName" : "manpreet caterers", "expenses" : 380 }
+{ "_id" : ObjectId("5d8eb4335710ff3ad2311050"), "eid" : 102, "companyName" : "manpreet caterers", "expenses" : 370 }
