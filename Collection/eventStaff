@@ -1,0 +1,9 @@
+> db.eventStaff.find()
+{ "_id" : ObjectId("5d8ebf4f5710ff3ad2311055"), "eid" : "103", "sid" : 100 }
+{ "_id" : ObjectId("5d8ebf565710ff3ad2311056"), "eid" : "101", "sid" : 100 }
+{ "_id" : ObjectId("5d8ebf5e5710ff3ad2311057"), "eid" : "102", "sid" : 100 }
+{ "_id" : ObjectId("5d8ebf6b5710ff3ad2311058"), "eid" : "103", "sid" : 111 }
+{ "_id" : ObjectId("5d8ebf785710ff3ad2311059"), "eid" : "100", "sid" : 111 }
+{ "_id" : ObjectId("5d8ebf8f5710ff3ad231105a"), "eid" : "104", "sid" : 111 }
+{ "_id" : ObjectId("5d8ebfd55710ff3ad231105b"), "eid" : "106", "sid" : 110 }
+{ "_id" : ObjectId("5d8ebfdc5710ff3ad231105c"), "eid" : "107", "sid" : 110 }
