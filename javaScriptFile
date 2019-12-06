@@ -1,0 +1,169 @@
+const express= require('express');
+const app = express();
+var mongo= require('mongodb');
+app.use(express.json());
+//connect to database and show list of collections.
+app.get('/api/project',(req,res)=>{
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("event_management_system");
+ 
+  dbo.listCollections().toArray(function(err, collInfos) {
+    if (err) throw err;
+    console.log(collInfos);
+    res.send(collInfos);
+		db.close();
+	  });
+	}); 
+});
+//show document in eventService collection.
+app.get('/api/project/eventService',(req,res)=>{
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+MongoClient.connect(url, function(err, db) {
+if (err) throw err;
+var dbo = db.db("event_management_system");
+dbo.collection("eventService").find({}).toArray(function(err, result) {
+if (err) throw err;
+console.log(result);
+res.send(result);
+
+db.close();
+	  });
+	}); 
+});
+//get service which will read data from your eventService collection  based on the  parameter.
+app.get('/api/eventService/:eid', (req,res)=> {
+
+	var MongoClient = require('mongodb').MongoClient;
+	var url = "mongodb://localhost:27017/";
+
+	MongoClient.connect(url, function(err, db) {
+	  if (err) throw err;
+	  var dbo = db.db("event_management_system");
+	  dbo.collection("eventService").find({}).toArray(function(err, result) {
+		if (err) throw err;
+		console.log(result);
+		const s1=result;
+	const s2=s1.find(c=>c.designation===(req.params.designation));
+	if(!s2)res.status(404).send('<h2>style ="fontFamily: Malgun Gothic; color:darked;">not found!!</h2>');
+		res.send(s2);
+		db.close();
+	  });
+	}); 
+});
+
+//get service which will read data from your eventStaff collection  based on the  parameter.
+app.get('/api/eventStaff/:eid', (req,res)=> {
+
+	var MongoClient = require('mongodb').MongoClient;
+	var url = "mongodb://localhost:27017/";
+
+	MongoClient.connect(url, function(err, db) {
+	  if (err) throw err;
+	  var dbo = db.db("event_management_system");
+	  dbo.collection("eventStaff").find({}).toArray(function(err, result) {
+		if (err) throw err;
+		console.log(result);
+		const s1=result;
+	const s2=s1.find(c=>c.designation===(req.params.designation));
+	if(!s2)res.status(404).send('<h2>style ="fontFamily: Malgun Gothic; color:darked;">not found!!</h2>');
+		res.send(s2);
+		db.close();
+	  });
+	}); 
+});
+
+//post services to insert data into eventService collection.
+app.post('/api/insertService', (req, res)=>{
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("event_management_system");
+  var myobj = { eid:"100",companyName: "kajal", expenses:"900",};
+  dbo.collection("eventService").insertOne(myobj, function(err, result) {
+    if (err) throw err;
+    console.log("1 document inserted");
+	res.send(result);
+    db.close();
+  });
+});
+});
+
+//post services to insert data into eventStaff collection.
+app.post('/api/insertEventStaff', (req, res)=>{
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("event_management_system");
+  var myobj = { eid:"100",sid:"100",};
+  dbo.collection("eventStaff").insertOne(myobj, function(err, result) {
+    if (err) throw err;
+    console.log("1 document inserted");
+	res.send(result);
+    db.close();
+  });
+});
+});
+//delete service to delete data into eventService collection.
+app.delete('/api/deleteservice', (req, res)=>{
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+    var dbo = db.db("event_management_system");
+  var myquery = { companyName: 'john entertainment' };
+  dbo.collection("eventService").deleteMany(myquery, function(err, result) {
+    if (err) throw err;
+    console.log("documents deleted");
+	res.send(result);
+    db.close();
+  });
+});
+});
+//delete service to delete data into eventStaff collection.
+app.delete('/api/deleteservice', (req, res)=>{
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+    var dbo = db.db("event_management_system");
+  var myquery = { sid:"111"};
+  dbo.collection("eventStaff").deleteMany(myquery, function(err, result) {
+    if (err) throw err;
+    console.log("documents deleted");
+	res.send(result);
+    db.close();
+  });
+});
+});
+
+//put service to update data into eventService collection.
+app.put('/api/updateservice', (req, res)=>{
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("event_management_system");
+  var myquery = { companyName: "kajal" };
+  var newvalues = { $set: {companyName:"mehar decoraters" } };
+  dbo.collection("eventService").updateOne(myquery, newvalues, function(err, result) {
+    if (err) throw err;
+    console.log(" document updated");
+	res.send(result);
+    db.close();
+  });
+});
+});
+
+const port= process.env.PORT||8081;
+app.listen(port,()=>console.log('listening to port ${port}...'));
